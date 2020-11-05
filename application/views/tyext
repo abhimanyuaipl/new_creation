@@ -1,0 +1,150 @@
+<thead>
+        <tr>            
+            <th>id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>email</th>
+            <th>Phone</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+</thead>
+        <tbody>
+   <?php 
+ foreach($user as $data){
+    echo "    
+    <tr>
+    <td>{$data ['id']}</td>
+    <td>{$data ['first_name']}</td>
+    <td>{$data ['last_name']}</td>
+    <td>{$data ['email']}</td>
+    <td>{$data ['phone']}</td>
+    <td><a href='". base_url()."index.php/Auth/updatedata/".$data['id']."'><button class='btn btn-primary btn-block'>edit</button></a></td>
+    <td><a href='". base_url()."index.php/Auth/deletedata/".$data['id']."'><button class='btn btn-danger btn-block'>Delete</button></a></td>
+    </tr> 
+    ";
+ }
+   ?>     
+   </tbody>                                          
+</table>
+</div>
+
+
+<script>
+    $(document).ready(function () {        
+             $('#table_id').DataTable();        
+
+    });
+</script>
+
+
+
+
+for ajax DataTable
+  //  "ajax" : "<?php echo base_url().'index.php/Auth/fetchdata';?>",
+                //  "order":[], 
+                //  "pageLength":5, 
+
+
+
+
+
+
+                ///for loop for dtaa insert
+                
+            for ($i=1000; $i <=2000; $i++) { 
+                $firstname='abc '.$i.'';
+                $lastname='bcd'.$i.'';
+                $email='abhimanyu123'.$i.'@gmail.com';
+                $password='12345' ;
+                $phone='9872716811';    
+                $created_at=date('Y-m-H:i:s');  
+
+
+
+
+
+
+                $user= $this->db->select('*');
+         if(!empty($search)) {
+            $this->db->like('first_name',$search);
+         }
+        $this->db->limit($limit,$offset);
+        $this->db->get('users',$offset,$limit) ;
+        return  $this->db->result_array();
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <!DOCTYPE html>
+<html>
+<head>
+    <title>userdashboard</title>
+    <link rel="stylesheet" href="<?php echo base_url().'assets/css/bootstrap.css'?>">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="container col-md-6">
+     <form action="<?php echo base_url().'index.php/Auth/upload'?>" method="post" enctype="multipart/form_data" >
+  <div class="card-body">
+     <ul id="section-tabs">
+      <li class="current active"><span>1.</span> Add Product</li>
+      <li><span>2.</span>product  type price</li>
+      <li><span>3.</span> Availbality</li>
+      <li><span>4.</span> preview</li>
+    </ul> 
+    <p class="card-text">Fill your product Details Here.</p>
+    <div class="form-group">
+    <label for="Product Title">Product Title</label>
+    <input type="text" name="p_title" id="product_title" value="" class="form-control" placeholder="product_title">
+    
+    </div>
+    <div class="form-group">
+    <label for="product_name">Product Name</label>
+    <input type="text" name="product_name" id="product_name" value="" class="form-control" placeholder="product_name">
+    
+    </div>
+    <div class="form-group">
+    <label>Product details</label>
+    <textarea rows="4" type="text" name="productdetails" id="productdetails" placeholder="productdetails" class="form-control"></textarea>
+    </div>
+    
+            
+  
+  
+    <button class="btn btn-success "> Submit</button>
+    
+    
+  
+  </div>
+</div>
+</form>
+</div>
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
